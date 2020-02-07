@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## useSnack hook
+
+## TODO
+
+- cleanup hacky test page
 
 ## Available Scripts
 
