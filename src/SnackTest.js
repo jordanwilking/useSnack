@@ -24,6 +24,7 @@ const Content = styled.div`
 function SnackbarTest() {
   const addSnack = useSnack()
 
+  // Try it out here
   const handleClick = () => {
     addSnack('Info', {
       status: 'info',
@@ -36,98 +37,78 @@ function SnackbarTest() {
   return (
     <>
       <Button onClick={handleClick} variant='contained' color='primary'>
-        Test
+        Click me for snacks
       </Button>
       <DisplayContainer>
-        <Content>
-          <DemoSnack message='That thing you did was successful!' />
-          <div style={{ textAlign: 'left', width: '50%' }}>
-            <Typography
-              variant='subtitle2'
-              style={{ color: 'white', textAlign: 'left' }}
-            >
-              addSnack("That thing you did was successful!")
-            </Typography>
-          </div>
-        </Content>
-        <Content>
-          <DemoSnack
-            message='This warning is closeable'
-            closeable
-            status='warning'
-          />
-          <div style={{ textAlign: 'left', width: '50%' }}>
-            <Typography variant='subtitle2' style={{ color: 'white' }}>
-              {
-                'addSnack("This warning is closeable", {closeable: true, status: "warning"})'
-              }
-            </Typography>
-          </div>
-        </Content>
-        <Content>
-          <DemoSnack message='Just so you know' status='info' />
-          <div style={{ textAlign: 'left', width: '50%' }}>
-            <Typography variant='subtitle2' style={{ color: 'white' }}>
-              {'addSnack("Just so you know", {status: "info"})'}
-            </Typography>
-          </div>
-        </Content>
-        <Content>
-          <DemoSnack message="That wasn't good" status='error' closeable undo />
-          <div style={{ textAlign: 'left', width: '50%' }}>
-            <Typography variant='subtitle2' style={{ color: 'white' }}>
-              {
-                'addSnack("That wasn\'t good", {status: "error", closeable: true, undo: handleUndo})'
-              }
-            </Typography>
-          </div>
-        </Content>
-        <Content>
-          <DemoSnack
-            message='You can also set custom timeouts'
-            status='info'
-            closeable
-          />
-          <div style={{ textAlign: 'left', width: '50%' }}>
-            <Typography variant='subtitle2' style={{ color: 'white' }}>
-              {
-                'addSnack("You can also set custom timeouts", {status: "info", timeout: 5000, closeable: true})'
-              }
-            </Typography>
-          </div>
-        </Content>
-        <Content>
-          <DemoSnack
-            message='And make it clickaway closable'
-            status='info'
-            closeable
-          />
-          <div style={{ textAlign: 'left', width: '50%' }}>
-            <Typography variant='subtitle2' style={{ color: 'white' }}>
-              {
-                'addSnack("And make the snack clickaway closeable",\n{status: "info", clickawayCloseable: true, closeable: true})'
-              }
-            </Typography>
-          </div>
-        </Content>
-        <Content>
-          <DemoSnack message='Too many props? Add defaults' closeable undo />
-          <div style={{ textAlign: 'left', width: '50%' }}>
-            <Typography variant='subtitle2' style={{ color: 'white' }}>
-              {'addSnack("Too many props? Add defaults", undoSuccess)'}
-            </Typography>
-          </div>
-        </Content>
-        <Content>
-          <DemoSnack message='Just useSnack' status='info' />
-          <div style={{ textAlign: 'left', width: '50%' }}>
-            <Typography variant='subtitle2' style={{ color: 'white' }}>
-              {'const addSnack = useSnack()'}
-            </Typography>
-          </div>
-        </Content>
+        <Example
+          message='That thing you did was successful!'
+          exampleText='addSnack("That thing you did was successful!")'
+        />
+        <Example
+          message='This warning is closeable'
+          exampleText='addSnack("This warning is closeable", {closeable: true, status: "warning"})'
+          status='warning'
+          closeable
+        />
+        <Example
+          message='Just so you know'
+          exampleText='addSnack("Just so you know", {status: "info"})'
+          status='info'
+        />
+        <Example
+          message="That wasn't good"
+          exampleText={
+            'addSnack("That wasn\'t good", {status: "error", closeable: true, undo: handleUndo})'
+          }
+          status='error'
+          closeable
+          undo
+        />
+        <Example
+          message='You can also set custom timeouts'
+          exampleText='addSnack("You can also set custom timeouts", {status: "info", timeout: 5000, closeable: true})'
+          status='info'
+          closeable
+        />
+        <Example
+          message='And make it clickaway closable'
+          exampleText='addSnack("And make the snack clickaway closeable", {status: "info", clickawayCloseable: true, closeable: true})'
+          status='info'
+          closeable
+        />
+        <Example
+          message='Too many props? Add defaults'
+          exampleText='addSnack("Too many props? Add defaults", undoSuccess)'
+          closeable
+          undo
+        />
+        <Example
+          message='Just useSnack'
+          exampleText='const addSnack = useSnack()'
+          status='info'
+        />
       </DisplayContainer>
     </>
+  )
+}
+
+const Example = props => {
+  const { message, exampleText, status, closeable, undo } = props
+
+  return (
+    <Content>
+      <DemoSnack
+        message={message}
+        status={status}
+        closeable={closeable}
+        undo={undo}
+      />
+      <div style={{ textAlign: 'left', width: '50%' }}>
+        <Typography variant='subtitle2' style={{ color: 'white' }}>
+          {exampleText}
+        </Typography>
+      </div>
+    </Content>
   )
 }
 

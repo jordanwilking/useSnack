@@ -4,7 +4,7 @@
 
 ## TODO
 
-- cleanup hacky test page
+- Now that we `addSnack` directly, update picture
 
 ## Available Scripts
 
