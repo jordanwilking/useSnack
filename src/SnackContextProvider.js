@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useMemo } from 'react'
 import Button from '@material-ui/core/Button'
 import SnackBar from '@material-ui/core/Snackbar'
 import Alert from '@material-ui/lab/Alert'
@@ -26,7 +26,7 @@ export function SnackBarProvider({ children }) {
 
   // Remove snack after timeout
   useEffect(() => {
-    if (currentSnack) {
+    if (currentSnack.message) {
       const timeout = currentSnack.timeout || AUTO_DISMISS
 
       const timer = setTimeout(() => {
@@ -55,7 +55,7 @@ export function SnackBarProvider({ children }) {
     setSnacks(snacks => snacks.slice(0, snacks.length - 1))
   }
 
-  const value = { addSnack }
+  const value = useMemo(() => addSnack, [])
   const {
     message,
     status,
@@ -100,7 +100,7 @@ export function SnackBarProvider({ children }) {
                     color='inherit'
                     onClick={handleClose}
                   >
-                    <CloseIcon size='small' fontSize='small' />
+                    <CloseIcon fontSize='small' />
                   </IconButton>
                 )}
               </>

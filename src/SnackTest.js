@@ -22,7 +22,7 @@ const Content = styled.div`
 `
 
 function SnackbarTest() {
-  const { addSnack } = useSnack()
+  const addSnack = useSnack()
 
   const handleClick = () => {
     addSnack('Info', {
@@ -122,7 +122,7 @@ function SnackbarTest() {
           <DemoSnack message='Just useSnack' status='info' />
           <div style={{ textAlign: 'left', width: '50%' }}>
             <Typography variant='subtitle2' style={{ color: 'white' }}>
-              {'const { addSnack } = useSnack()'}
+              {'const addSnack = useSnack()'}
             </Typography>
           </div>
         </Content>
